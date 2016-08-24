@@ -22,37 +22,3 @@ function addNewUserTofireblog() {
   }
   UrlFetchApp.fetch(dbUrl + path + ".json?auth=" + secret, params);
 }
-
-
-
-
-/*
-Real-time notifications in add-ons with Firebase
-July 29, 2015
-http://googleappsdeveloper.blogspot.kr/2015/07/real-time-notifications-in-add-ons-with.html
-*/
-function addNewUserToFirebase() {
-  var dbUrl = "https://eojjigas.firebaseio.com/"; // "https://test-apps-script.firebaseio.com";
-  var secret = PropertiesService.getScriptProperties().getProperty("fb-secret");
-  var path = "/users/";
- 
-// https://developers.google.com/apps-script/reference/base/session#getActiveUser()
- // Log the email address of the person running the script.
- var email = Session.getActiveUser().getEmail();
-// Logger.log(email);
-  
-  var userData = {
-    Kimhuysep:{
-      firstName:"Kim", 
-      lastName:"Huysep",
-      email:email,
-      registrationDate: new Date()
-    }
-  };  
-  
-  var params = {
-    method: "PUT",
-    payload : JSON.stringify(userData)
-  }
-   UrlFetchApp.fetch(dbUrl + path + ".json?auth=" + secret, params);
-}
